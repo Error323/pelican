@@ -118,10 +118,16 @@ void PipelineApplication::exit(int i)
         d->stop();
     }
 
+    // XXX Pipelines don't perform a clean exit when blocking for
+    // data. We enforce a clean exit now.
+    ::exit(i);
+
     // If this is called more than once, abandon the 'clean' exit
+    /*
     if (++_exitCount > 1) {
         ::exit(i);
     }
+    */
 }
 
 /**
